@@ -5,7 +5,7 @@ export DATABASE_WAIT_SECONDS="20"
 export MYSQL_DATABASE="${MYSQL_DATABASE:-employees}"
 export MYSQL_ROOT_USER="${MYSQL_ROOT_USER:-root}"
 export MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD:-root}"
-export SCHEMA_FILE="${SCHEMA_FILE:-./schemas/employees.sql}"
+export SCHEMA_FILE="${SCHEMA_FILE:-./schemas/${MYSQL_DATABASE}.sql}"
 export SCHEMA_DIR="$(dirname ${SCHEMA_FILE})"
 export SERVICE_NAME="$(basename $(pwd))"
 
@@ -16,6 +16,8 @@ docker-compose up -d
 
 echo "==> Waiting ${DATABASE_WAIT_SECONDS} seconds for database(s) to come online."
 sleep ${DATABASE_WAIT_SECONDS}
+
+tar xvf ${SCHEMA_DIR}/${MYSQL_DATABASE}.tar.gz -C schemas
 
 echo "==> Loading the database schema(s)."
 docker exec -w /opt -i -e SCHEMA_FILE=$(basename "${SCHEMA_FILE}") ${SERVICE_NAME}-mysql-1 \
