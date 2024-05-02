@@ -1,0 +1,4149 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ent Schema API",
+    "description": "This is an auto generated API description made out of an Ent schema definition",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/departments": {
+      "get": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "List Departments",
+        "description": "List Departments.",
+        "operationId": "listDepartment",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer",
+              "maximum": 255,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Department list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "Create a new Department",
+        "description": "Creates a new Department and persists it to storage.",
+        "operationId": "createDepartment",
+        "requestBody": {
+          "description": "Department to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dept_employees": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "dept_managers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Department created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/departments/{id}": {
+      "get": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "Find a Department by ID",
+        "description": "Finds the Department with the requested ID and returns it.",
+        "operationId": "readDepartment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Department",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Department with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "Deletes a Department by ID",
+        "description": "Deletes the Department with the requested ID.",
+        "operationId": "deleteDepartment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Department",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Department with requested ID was deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "Updates a Department",
+        "description": "Updates a Department and persists changes to storage.",
+        "operationId": "updateDepartment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Department",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Department properties to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dept_employees": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "dept_managers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Department updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/departments/{id}/dept-employees": {
+      "get": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "List attached DeptEmployees",
+        "description": "List attached DeptEmployees.",
+        "operationId": "listDepartmentDeptEmployees",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Department",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Departments list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Department_DeptEmployeesList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/departments/{id}/dept-managers": {
+      "get": {
+        "tags": [
+          "Department"
+        ],
+        "summary": "List attached DeptManagers",
+        "description": "List attached DeptManagers.",
+        "operationId": "listDepartmentDeptManagers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Department",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Departments list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Department_DeptManagersList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-employees": {
+      "get": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "List DeptEmployees",
+        "description": "List DeptEmployees.",
+        "operationId": "listDeptEmployee",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer",
+              "maximum": 255,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result DeptEmployee list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeptEmployeeList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "Create a new DeptEmployee",
+        "description": "Creates a new DeptEmployee and persists it to storage.",
+        "operationId": "createDeptEmployee",
+        "requestBody": {
+          "description": "DeptEmployee to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "department_id": {
+                    "type": "string"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  },
+                  "department": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from_date",
+                  "to_date"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DeptEmployee created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptEmployeeCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-employees/{id}": {
+      "get": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "Find a DeptEmployee by ID",
+        "description": "Finds the DeptEmployee with the requested ID and returns it.",
+        "operationId": "readDeptEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptEmployee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeptEmployee with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptEmployeeRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "Deletes a DeptEmployee by ID",
+        "description": "Deletes the DeptEmployee with the requested ID.",
+        "operationId": "deleteDeptEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptEmployee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DeptEmployee with requested ID was deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "Updates a DeptEmployee",
+        "description": "Updates a DeptEmployee and persists changes to storage.",
+        "operationId": "updateDeptEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptEmployee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "DeptEmployee properties to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "department_id": {
+                    "type": "string"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  },
+                  "department": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DeptEmployee updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptEmployeeUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-employees/{id}/department": {
+      "get": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "Find the attached Department",
+        "description": "Find the attached Department of the DeptEmployee with the given ID",
+        "operationId": "readDeptEmployeeDepartment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptEmployee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Department attached to DeptEmployee with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptEmployee_DepartmentRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-employees/{id}/employee": {
+      "get": {
+        "tags": [
+          "DeptEmployee"
+        ],
+        "summary": "Find the attached Employee",
+        "description": "Find the attached Employee of the DeptEmployee with the given ID",
+        "operationId": "readDeptEmployeeEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptEmployee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee attached to DeptEmployee with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptEmployee_EmployeeRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-managers": {
+      "get": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "List DeptManagers",
+        "description": "List DeptManagers.",
+        "operationId": "listDeptManager",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer",
+              "maximum": 255,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result DeptManager list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DeptManagerList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "Create a new DeptManager",
+        "description": "Creates a new DeptManager and persists it to storage.",
+        "operationId": "createDeptManager",
+        "requestBody": {
+          "description": "DeptManager to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "department_id": {
+                    "type": "string"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  },
+                  "department": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from_date",
+                  "to_date"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DeptManager created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptManagerCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-managers/{id}": {
+      "get": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "Find a DeptManager by ID",
+        "description": "Finds the DeptManager with the requested ID and returns it.",
+        "operationId": "readDeptManager",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptManager",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "DeptManager with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptManagerRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "Deletes a DeptManager by ID",
+        "description": "Deletes the DeptManager with the requested ID.",
+        "operationId": "deleteDeptManager",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptManager",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "DeptManager with requested ID was deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "Updates a DeptManager",
+        "description": "Updates a DeptManager and persists changes to storage.",
+        "operationId": "updateDeptManager",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptManager",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "DeptManager properties to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "department_id": {
+                    "type": "string"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  },
+                  "department": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DeptManager updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptManagerUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-managers/{id}/department": {
+      "get": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "Find the attached Department",
+        "description": "Find the attached Department of the DeptManager with the given ID",
+        "operationId": "readDeptManagerDepartment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptManager",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Department attached to DeptManager with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptManager_DepartmentRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/dept-managers/{id}/employee": {
+      "get": {
+        "tags": [
+          "DeptManager"
+        ],
+        "summary": "Find the attached Employee",
+        "description": "Find the attached Employee of the DeptManager with the given ID",
+        "operationId": "readDeptManagerEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the DeptManager",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee attached to DeptManager with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeptManager_EmployeeRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/employees": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "List Employees",
+        "description": "List Employees.",
+        "operationId": "listEmployee",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer",
+              "maximum": 255,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Employee list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Create a new Employee",
+        "description": "Creates a new Employee and persists it to storage.",
+        "operationId": "createEmployee",
+        "requestBody": {
+          "description": "Employee to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "birth_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "enum": [
+                      "M",
+                      "F"
+                    ]
+                  },
+                  "hire_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dept_employees": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "dept_managers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "salaries": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "titles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "birth_date",
+                  "first_name",
+                  "last_name",
+                  "gender",
+                  "hire_date"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Employee created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/employees/{id}": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Find a Employee by ID",
+        "description": "Finds the Employee with the requested ID and returns it.",
+        "operationId": "readEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Deletes a Employee by ID",
+        "description": "Deletes the Employee with the requested ID.",
+        "operationId": "deleteEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Employee with requested ID was deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Updates a Employee",
+        "description": "Updates a Employee and persists changes to storage.",
+        "operationId": "updateEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Employee properties to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "birth_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "enum": [
+                      "M",
+                      "F"
+                    ]
+                  },
+                  "hire_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dept_employees": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "dept_managers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "salaries": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "titles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Employee updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/employees/{id}/dept-employees": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "List attached DeptEmployees",
+        "description": "List attached DeptEmployees.",
+        "operationId": "listEmployeeDeptEmployees",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Employees list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee_DeptEmployeesList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/employees/{id}/dept-managers": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "List attached DeptManagers",
+        "description": "List attached DeptManagers.",
+        "operationId": "listEmployeeDeptManagers",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Employees list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee_DeptManagersList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/employees/{id}/salaries": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "List attached Salaries",
+        "description": "List attached Salaries.",
+        "operationId": "listEmployeeSalaries",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Employees list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee_SalariesList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/employees/{id}/titles": {
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "List attached Titles",
+        "description": "List attached Titles.",
+        "operationId": "listEmployeeTitles",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Employee",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Employees list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee_TitlesList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/salaries": {
+      "get": {
+        "tags": [
+          "Salary"
+        ],
+        "summary": "List Salaries",
+        "description": "List Salaries.",
+        "operationId": "listSalary",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer",
+              "maximum": 255,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Salary list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SalaryList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Salary"
+        ],
+        "summary": "Create a new Salary",
+        "description": "Creates a new Salary and persists it to storage.",
+        "operationId": "createSalary",
+        "requestBody": {
+          "description": "Salary to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "salary": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "salary",
+                  "from_date",
+                  "to_date"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Salary created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalaryCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/salaries/{id}": {
+      "get": {
+        "tags": [
+          "Salary"
+        ],
+        "summary": "Find a Salary by ID",
+        "description": "Finds the Salary with the requested ID and returns it.",
+        "operationId": "readSalary",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Salary",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Salary with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalaryRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Salary"
+        ],
+        "summary": "Deletes a Salary by ID",
+        "description": "Deletes the Salary with the requested ID.",
+        "operationId": "deleteSalary",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Salary",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Salary with requested ID was deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Salary"
+        ],
+        "summary": "Updates a Salary",
+        "description": "Updates a Salary and persists changes to storage.",
+        "operationId": "updateSalary",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Salary",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Salary properties to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "salary": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Salary updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SalaryUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/salaries/{id}/employee": {
+      "get": {
+        "tags": [
+          "Salary"
+        ],
+        "summary": "Find the attached Employee",
+        "description": "Find the attached Employee of the Salary with the given ID",
+        "operationId": "readSalaryEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Salary",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee attached to Salary with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Salary_EmployeeRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/titles": {
+      "get": {
+        "tags": [
+          "Title"
+        ],
+        "summary": "List Titles",
+        "description": "List Titles.",
+        "operationId": "listTitle",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "what page to render",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          {
+            "name": "itemsPerPage",
+            "in": "query",
+            "description": "item count to render per page",
+            "schema": {
+              "type": "integer",
+              "maximum": 255,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "result Title list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TitleList"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Title"
+        ],
+        "summary": "Create a new Title",
+        "description": "Creates a new Title and persists it to storage.",
+        "operationId": "createTitle",
+        "requestBody": {
+          "description": "Title to create",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "from_date",
+                  "to_date"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Title created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TitleCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/titles/{id}": {
+      "get": {
+        "tags": [
+          "Title"
+        ],
+        "summary": "Find a Title by ID",
+        "description": "Finds the Title with the requested ID and returns it.",
+        "operationId": "readTitle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Title",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Title with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TitleRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Title"
+        ],
+        "summary": "Deletes a Title by ID",
+        "description": "Deletes the Title with the requested ID.",
+        "operationId": "deleteTitle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Title",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Title with requested ID was deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Title"
+        ],
+        "summary": "Updates a Title",
+        "description": "Updates a Title and persists changes to storage.",
+        "operationId": "updateTitle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Title",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Title properties to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "employee_id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "from_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "to_date": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "employee": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Title updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TitleUpdate"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/titles/{id}/employee": {
+      "get": {
+        "tags": [
+          "Title"
+        ],
+        "summary": "Find the attached Employee",
+        "description": "Find the attached Employee of the Title with the given ID",
+        "operationId": "readTitleEmployee",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the Title",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee attached to Title with requested ID was found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Title_EmployeeRead"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Department": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dept_employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeptEmployee"
+            }
+          },
+          "dept_managers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeptManager"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "DepartmentCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "DepartmentList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "DepartmentRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "DepartmentUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "Department_DeptEmployeesList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Department_DeptManagersList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptEmployee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "employee": {
+            "$ref": "#/components/schemas/Employee"
+          },
+          "department": {
+            "$ref": "#/components/schemas/Department"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptEmployeeCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptEmployeeList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptEmployeeRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptEmployeeUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptEmployee_DepartmentRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "DeptEmployee_EmployeeRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "DeptManager": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "employee": {
+            "$ref": "#/components/schemas/Employee"
+          },
+          "department": {
+            "$ref": "#/components/schemas/Department"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptManagerCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptManagerList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptManagerRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptManagerUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "DeptManager_DepartmentRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "DeptManager_EmployeeRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dept_employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeptEmployee"
+            }
+          },
+          "dept_managers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeptManager"
+            }
+          },
+          "salaries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Salary"
+            }
+          },
+          "titles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Title"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "EmployeeCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "EmployeeList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "EmployeeRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "EmployeeUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "Employee_DeptEmployeesList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Employee_DeptManagersList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "department_id": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Employee_SalariesList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "salary",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Employee_TitlesList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Salary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "employee": {
+            "$ref": "#/components/schemas/Employee"
+          }
+        },
+        "required": [
+          "id",
+          "salary",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "SalaryCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "salary",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "SalaryList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "salary",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "SalaryRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "salary",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "SalaryUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "salary": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "salary",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Salary_EmployeeRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      },
+      "Title": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "employee": {
+            "$ref": "#/components/schemas/Employee"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "TitleCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "TitleList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "TitleRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "TitleUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "employee_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "from_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "from_date",
+          "to_date"
+        ]
+      },
+      "Title_EmployeeRead": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "birth_date",
+          "first_name",
+          "last_name",
+          "gender",
+          "hire_date"
+        ]
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "invalid input, data invalid",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "errors": {}
+              },
+              "required": [
+                "code",
+                "status"
+              ]
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "insufficient permissions",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "errors": {}
+              },
+              "required": [
+                "code",
+                "status"
+              ]
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "errors": {}
+              },
+              "required": [
+                "code",
+                "status"
+              ]
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "conflicting resources",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "errors": {}
+              },
+              "required": [
+                "code",
+                "status"
+              ]
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "unexpected error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "errors": {}
+              },
+              "required": [
+                "code",
+                "status"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
